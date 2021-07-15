@@ -17,7 +17,7 @@ We have adopted **[Conventional Commits](https://www.conventionalcommits.org)** 
 - `fix` – for bug fixes and patches
 - `improvement` – for overall made improvements
 - `perf` – for changes optimizing the overall performance
-- `refactor` – for refactored code that does not change the public Discord bot
+- `refactor` – for refactored code
 - `revert` – for when reverting back to a previous commit
 - `style` – for code style changes (such as indentation)
 - `test` – for when adding tests or assertions
