@@ -17,4 +17,10 @@ export class AreaService {
 
     return;
   }
+
+  async getAreas() {
+    const areas = await this.prisma.area.findMany();
+
+    return areas;
+  }
 }
