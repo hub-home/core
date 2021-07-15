@@ -10,7 +10,7 @@ generator client {
 model Member {
   id       String  @id @default(uuid())
   name     String
-  username String
+  username String  @unique
   password String
   admin    Boolean @default(false)
 }
