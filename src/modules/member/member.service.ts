@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { PrismaService } from '@/modules/prisma/prisma.service';
 import { CreateMemberDto } from './dto/create-member.dto';
 
@@ -46,6 +46,10 @@ export class MemberService {
         admin: true,
       },
     });
+
+    if (!member) {
+      throw new HttpException("member doesn't exists", HttpStatus.NOT_FOUND);
+    }
 
     return member;
   }
