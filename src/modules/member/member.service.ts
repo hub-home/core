@@ -1,6 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { PrismaService } from '@/modules/prisma/prisma.service';
 import { CreateMemberDto } from './dto/create-member.dto';
+import argon2 from 'argon2';
 
 @Injectable()
 export class MemberService {
@@ -8,12 +9,13 @@ export class MemberService {
 
   async createMember(body: CreateMemberDto) {
     const { name, username, password, admin } = body;
+    const hashed = await argon2.hash(password);
 
     await this.prisma.member.create({
       data: {
         name,
         username,
-        password,
+        password: hashed,
         admin,
       },
     });
