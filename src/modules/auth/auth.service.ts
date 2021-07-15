@@ -2,10 +2,11 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { SignUpDto } from './dto/signup-auth.dto';
 import { PrismaService } from '@/modules/prisma/prisma.service';
 import argon2 from 'argon2';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
   async signIn(body: SignUpDto) {
     const { username, password } = body;
@@ -21,7 +22,11 @@ export class AuthService {
     }
 
     if (await argon2.verify(member.password, password)) {
-      // TODO: send jwt token
+      return {
+        token: this.jwtService.sign({
+          sub: member.id,
+        }),
+      };
     }
 
     throw new HttpException("password doesn't match", HttpStatus.FORBIDDEN);
