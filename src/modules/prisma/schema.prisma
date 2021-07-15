@@ -14,3 +14,8 @@ model Member {
   password String
   admin    Boolean @default(false)
 }
+
+model Area {
+  id   String @id @default(uuid())
+  name String
+}
