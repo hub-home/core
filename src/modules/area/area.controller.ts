@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AreaService } from './area.service';
 import { JwtAuthGuard } from '@/guards/jwt-auth.guard';
 
@@ -22,5 +30,11 @@ export class AreaController {
   @Get('/:id')
   getArea(@Param('id') id) {
     return this.areaService.getArea(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/:id')
+  deleteArea(@Param('id') id) {
+    return this.areaService.deleteArea(id);
   }
 }

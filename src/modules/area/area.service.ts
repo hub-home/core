@@ -33,4 +33,15 @@ export class AreaService {
 
     return area;
   }
+
+  // TODO: check if area doesn't exists
+  async deleteArea(id: string) {
+    await this.prisma.area.delete({
+      where: {
+        id,
+      },
+    });
+
+    return;
+  }
 }
