@@ -11,7 +11,8 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
-  app.setGlobalPrefix(config.get('prefix'));
-  await app.listen(config.get('port'));
+
+  app.setGlobalPrefix(config.get('http.prefix'));
+  await app.listen(config.get('http.port'));
 }
 bootstrap();
