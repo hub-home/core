@@ -23,4 +23,14 @@ export class AreaService {
 
     return areas;
   }
+
+  async getArea(id: string) {
+    const area = await this.prisma.area.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return area;
+  }
 }
