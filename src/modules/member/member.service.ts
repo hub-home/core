@@ -33,4 +33,20 @@ export class MemberService {
 
     return members;
   }
+
+  async getMember(id: string) {
+    const member = await this.prisma.member.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        admin: true,
+      },
+    });
+
+    return member;
+  }
 }
