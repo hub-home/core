@@ -49,4 +49,14 @@ export class MemberService {
 
     return member;
   }
+
+  async deleteMember(id: string) {
+    await this.prisma.member.delete({
+      where: {
+        id,
+      },
+    });
+
+    return;
+  }
 }
