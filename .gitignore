@@ -16,6 +16,10 @@ lerna-debug.log*
 #config
 /config/config.yaml
 
+#env
+.env
+.env.local
+
 # Tests
 /coverage
 /.nyc_output
