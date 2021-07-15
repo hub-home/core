@@ -26,7 +26,8 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
       map((data) => ({
         timestamp: dayjs().format(),
         code: statusCode,
-        data,
+        success: parseInt(statusCode).toString().startsWith('2') ? true : false,
+        data: data ? data : null,
       })),
     );
   }
