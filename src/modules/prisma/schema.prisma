@@ -6,3 +6,11 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Member {
+  id       String  @id @default(uuid())
+  name     String
+  username String
+  password String
+  admin    Boolean @default(false)
+}
