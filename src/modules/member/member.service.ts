@@ -20,4 +20,17 @@ export class MemberService {
 
     return;
   }
+
+  async getMembers() {
+    const members = await this.prisma.member.findMany({
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        admin: true,
+      },
+    });
+
+    return members;
+  }
 }
