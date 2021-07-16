@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/modules/prisma/prisma.service';
 import { CreateAreaDto } from './dto/create-area.dto';
+import { UpdateAreaDto } from './dto/update-area.dto';
 
 @Injectable()
 export class AreaService {
@@ -39,6 +40,21 @@ export class AreaService {
     await this.prisma.area.delete({
       where: {
         id,
+      },
+    });
+
+    return;
+  }
+
+  async updateArea(id: string, body: UpdateAreaDto) {
+    const { name } = body;
+
+    await this.prisma.area.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
       },
     });
 

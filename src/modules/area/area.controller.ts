@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import { AreaService } from './area.service';
@@ -36,5 +37,11 @@ export class AreaController {
   @Delete('/:id')
   deleteArea(@Param('id') id) {
     return this.areaService.deleteArea(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put('/:id')
+  updateArea(@Param('id') id, @Body() body) {
+    return this.areaService.updateArea(id, body);
   }
 }
