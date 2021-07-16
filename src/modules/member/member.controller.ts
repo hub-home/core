@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { JwtAuthGuard } from '@/guards/jwt-auth.guard';
+import { CreateMemberDto } from './dto/create-member.dto';
 
 @Controller('members')
 export class MemberController {
@@ -16,7 +17,7 @@ export class MemberController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  createMember(@Body() body) {
+  createMember(@Body() body: CreateMemberDto) {
     return this.memberService.createMember(body);
   }
 

@@ -10,6 +10,8 @@ import {
 } from '@nestjs/common';
 import { AreaService } from './area.service';
 import { JwtAuthGuard } from '@/guards/jwt-auth.guard';
+import { CreateAreaDto } from './dto/create-area.dto';
+import { UpdateAreaDto } from './dto/update-area.dto';
 
 @Controller('areas')
 export class AreaController {
@@ -17,7 +19,7 @@ export class AreaController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  createArea(@Body() body) {
+  createArea(@Body() body: CreateAreaDto) {
     return this.areaService.createArea(body);
   }
 
@@ -41,7 +43,7 @@ export class AreaController {
 
   @UseGuards(JwtAuthGuard)
   @Put('/:id')
-  updateArea(@Param('id') id, @Body() body) {
+  updateArea(@Param('id') id, @Body() body: UpdateAreaDto) {
     return this.areaService.updateArea(id, body);
   }
 }

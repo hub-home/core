@@ -5,6 +5,7 @@ import { HttpExceptionFilter } from '@/filters/http-exception.filter';
 import { ResponseInterceptor } from '@/filters/response.interceptor';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from '@/utils/logger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const logger = new Logger('server');
@@ -18,6 +19,7 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
 
   app.setGlobalPrefix(config.get('http.prefix'));
   await app.listen(config.get('http.port'));
